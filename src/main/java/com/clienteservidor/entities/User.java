@@ -15,12 +15,13 @@ public class User {
 	private Integer userID;
 	private String name;
 	private String surname;
+	private String login;
 	private String address;
 	private String state;
 	private String city;
 	private String postalCode;
 	private String phoneNumber;
-	private boolean admin;
+	private int admin;
 	private String password;
 	
 	/**
@@ -44,12 +45,13 @@ public class User {
 	 * @param admin
 	 * @param password
 	 */
-	public User(Integer userID, String name, String surname, String address, String state, String city,
-			String postalCode, String phoneNumber, boolean admin, String password) {
+	public User(Integer userID, String name, String surname, String login, String address, String state, String city,
+			String postalCode, String phoneNumber, int admin, String password) {
 		super();
 		this.userID = userID;
 		this.name = name;
 		this.surname = surname;
+		this.login = login;
 		this.address = address;
 		this.state = state;
 		this.city = city;
@@ -174,14 +176,14 @@ public class User {
 	/**
 	 * @return the admin
 	 */
-	public boolean isAdmin() {
+	public int getAdmin() {
 		return admin;
 	}
 
 	/**
 	 * @param admin the admin to set
 	 */
-	public void setAdmin(boolean admin) {
+	public void setAdmin(int admin) {
 		this.admin = admin;
 	}
 
@@ -197,5 +199,20 @@ public class User {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
-	}	
+	}
+
+	/**
+	 * @return the login
+	 */
+	public String getLogin() {
+		return login;
+	}
+
+	/**
+	 * @param login the login to set
+	 */
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	
 }
