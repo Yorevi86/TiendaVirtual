@@ -5,7 +5,6 @@ package com.clienteservidor.utilities;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Pattern;
 
