@@ -9,7 +9,7 @@
 <body>
     <%
     if(request.getAttribute("errores") != null){
-        out.println("Corregir los errores en:\n" + request.getAttribute("errores"));
+        out.println("Corregir los errores en:<br>" + request.getAttribute("errores"));
     }
     %>
     <form name="login" action="./validation" method="get">

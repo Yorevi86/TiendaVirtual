@@ -23,4 +23,13 @@ public class LoginController {
 		
 		return new ModelAndView("login");
 	}
+	
+	@GetMapping("/logout")
+	public ModelAndView logoutIntranet(HttpServletRequest request) {
+
+		request.getSession().invalidate();
+
+		return new ModelAndView("redirect:/index");
+
+	}
 }

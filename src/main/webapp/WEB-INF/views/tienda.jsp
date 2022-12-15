@@ -150,18 +150,10 @@
                     </tr>
                 </thead>
                 <tbody>                    
-                    <tr>
-                        <td class="tg-0lax"></td>
-                        <td class="tg-dg7a"></td>
-                        <td class="tg-0lax"></td>
-                        <td class="tg-dg7a"></td>
-                    </tr>
-                    <tr>
-                        <td class="tg-0lax"></td>
-                        <td class="tg-dg7a"></td>
-                        <td class="tg-0lax"></td>
-                        <td class="tg-dg7a"></td>
-                    </tr>
+                    <%
+                    String catalogo = (String) request.getAttribute("catalogo");
+                    out.println(catalogo);
+                    %>
                     <tr>
                         <td class="tg-0lax" colspan="4"></td>
                     </tr>
