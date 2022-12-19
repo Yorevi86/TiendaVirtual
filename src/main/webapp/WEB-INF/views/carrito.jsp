@@ -1,3 +1,7 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.clienteservidor.entities.OrderDetails" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -149,8 +153,8 @@
 		
 		out.println("<p>Actualmente la dirección de envío asociada a su cuenta es:</p>");
 		out.println("<p style=\"color: brown;\">" + request.getSession().getAttribute("address") + "</p>");
-		out.println("<p>Pulse comprar para realizar la compra.</p>");
-		out.println("<button type=\"button\" onclick=\"location.href='compra'\">Comprar</button>");
+		out.println("<p>Si desea mantener esa dirección y finalizar su compra, pulse comprar.</p>");
+		out.println("<form name=\"compra\" action=\"./realizarcompra\" method=\"get\"><button type=\"submit\">Comprar</button></form>");
 		out.println("<form name=\"login\" action=\"./modificardireccion\" method=\"get\"><p>Si desea modificar la dirección en nuestra base de datos, rellene los siguientes datos y pulse el botón modificar para cambiarla.</p>");
 		out.println("<p>Dirección:</p>\r\n"
 				+ "    <input type=\"text\" name=\"address\" id=\"address\">\r\n"

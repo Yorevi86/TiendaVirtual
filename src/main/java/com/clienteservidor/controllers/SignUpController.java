@@ -37,10 +37,6 @@ public class SignUpController {
 	@GetMapping("/modificardireccion")
 	public ModelAndView modifyAddressIntranet(HttpServletRequest request) {
 
-		// Se recoge el QueryString de la compra para realizar la redirección
-		// a tienda tras modificar los datos.
-		String redireccion = (String) request.getAttribute("compra");
-
 		// Creación de String de errores de validación.
 		String errors = "";
 
@@ -69,17 +65,23 @@ public class SignUpController {
 				}
 			}
 			
-			// Si está libre de errores, se registra al usuario en la DB.
+			// Si está libre de errores, se registra al usuario en la DB y se actualiza
+			// la sesión.
 			if(errors.isEmpty()) {
+				
 				connection.alterAddress(usuarioTemp);
+				request.getSession().setAttribute("address", request.getParameter("address"));
+				request.getSession().setAttribute("state", request.getParameter("state"));
+				request.getSession().setAttribute("city", request.getParameter("city"));
+				request.getSession().setAttribute("postalCode", request.getParameter("postalCode"));
 				
 				// Se envía al usuario a la página de login para poder conectarse.
-				return new ModelAndView("carrito" + redireccion);
+				return new ModelAndView("redirect:/carrito");
 			} else {
 				
 				// Si hay errores, se envía al cliente de vuelta a signup y se añade
 				// a la vista el String con los datos erróneos.
-				ModelAndView mav = new ModelAndView("carrito" + redireccion);
+				ModelAndView mav = new ModelAndView("redirect:/carrito");
 				mav.addObject("errores", errors);
 				
 				return mav;

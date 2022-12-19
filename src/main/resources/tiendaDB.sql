@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS users;
 /*Table structure for table `users` */
 
 CREATE TABLE users (
-  userID int NOT NULL IDENTITY(1,1),
+  userID int NOT NULL AUTO_INCREMENT,
   name varchar(255) NOT NULL,
   surname varchar(255) NOT NULL,
   login varchar(255) NOT NULL,
@@ -44,7 +44,7 @@ insert into users(name,surname,login,address,state,city,postalCode,phoneNumber,a
 DROP TABLE IF EXISTS products;
 
 CREATE TABLE products (
-  productID int NOT NULL IDENTITY(1,1),
+  productID int NOT NULL AUTO_INCREMENT,
   productName varchar(255) NOT NULL,
   stock int NOT NULL,
   description varchar(255) NOT NULL,
@@ -70,7 +70,7 @@ insert  into products(productName,stock,description,price) values
 DROP TABLE IF EXISTS orders;
 
 CREATE TABLE orders (
-  orderID int NOT NULL IDENTITY(1,1),
+  orderID int NOT NULL AUTO_INCREMENT,
   orderDate date NOT NULL,
   buyerID int NOT NULL,
   PRIMARY KEY (orderID),

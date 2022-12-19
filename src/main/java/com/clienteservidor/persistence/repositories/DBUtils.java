@@ -3,16 +3,19 @@
  */
 package com.clienteservidor.persistence.repositories;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.stereotype.Repository;
 
 import com.clienteservidor.entities.MappedOrder;
 import com.clienteservidor.entities.MappedProduct;
 import com.clienteservidor.entities.MappedUser;
 import com.clienteservidor.entities.Order;
+import com.clienteservidor.entities.OrderDetails;
 import com.clienteservidor.entities.Product;
 import com.clienteservidor.entities.User;
 
@@ -88,6 +91,11 @@ public class DBUtils {
 		template.execute(sql);
 	}
 	
+	/**
+	 * Método para modificar la dirección de un cliente.
+	 * 
+	 * @param usuario
+	 */
 	public void alterAddress (User usuario) {
 		
 		String sql = "UPDATE users SET address='" + usuario.getAddress() + "', state='" + usuario.getState() + "', city='"
@@ -95,5 +103,51 @@ public class DBUtils {
 				+ "';";
 		
 		template.execute(sql);
+	}
+	
+	/**
+	 * Método para insertar una venta en la tabla orders.
+	 * 
+	 * @param venta
+	 */
+	public void insertOrder (Order venta) {
+		
+		String sql = "INSERT INTO orders(orderDate, buyerID) VALUES ('"
+				+ LocalDate.now() + "', "
+				+ venta.getBuyerID() + ");"
+				;
+		
+		template.execute(sql);
+		
+	}
+	
+	/**
+	 * Método para obtener la última compra de un cliente.
+	 * 
+	 * @param usuario
+	 * @return List<Order>
+	 */
+	public List<Order> getLastOrderFromAnUser (Integer idUsuario){
+		
+		String sql = "SELECT * FROM orders WHERE buyerID=" + idUsuario + " ORDER BY orderID DESC LIMIT 1";
+		
+		return template.query(sql, new MappedOrder());
+	}
+	
+	/**
+	 * Método para insertar un detalle de venta en la tabla orderdetails.
+	 * 
+	 * @param detallesVenta
+	 */
+	public void insertOrderDetails (OrderDetails detallesVenta) {
+		
+		String sql = "INSERT INTO orderdetails(orderID, productID, quantity, priceEach) VALUES ("
+				+ detallesVenta.getOrderID() + ", "
+				+ detallesVenta.getProductID() + ", "
+				+ detallesVenta.getQuantity() + ", "
+				+ detallesVenta.getPriceEach() + ");";
+				
+		template.execute(sql);
+		
 	}
 }
