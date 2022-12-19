@@ -134,16 +134,13 @@
                                     out.println("<button type=\"submit\" onclick=\"location.href='logout'\">Cerrar sesion</button></th>");
                                 } else if (admin == 0) {
                                     out.println("<span>Bienvenido, " + request.getSession().getAttribute("name") + "!</span>");
-                                    out.println("<button type=\"submit\" onclick=\"location.href='carrito'\">Ver carrito</button>");
                                     out.println("<button type=\"submit\" onclick=\"location.href='logout'\">Cerrar sesion</button></th>");
                                 } else {
                                     out.println("<span>Bienvenido invitado!</span>");
-                                    out.println("<button type=\"submit\" onclick=\"location.href='carrito'\">Ver carrito</button>");
                                     out.println("<button type=\"submit\" onclick=\"location.href='login'\">Iniciar sesion</button></th>");
                                 }
                             } else {
                                 out.println("<span>Bienvenido invitado!</span>");
-                                out.println("<button type=\"submit\" onclick=\"location.href='carrito'\">Ver carrito</button>");
                                 out.println("<button type=\"submit\" onclick=\"location.href='login'\">Iniciar sesion</button></th>");
                             }
                             %>
