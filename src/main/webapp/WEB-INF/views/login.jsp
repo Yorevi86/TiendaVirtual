@@ -17,7 +17,7 @@
         <p>Nombre de usuario:</p>
         <input type="text" name="login" id="login">
 
-        <p>ContraseÃ±a:</p>
+        <p>Contraseña:</p>
         <input type="password" name="password" id="password">
         <p></p>
         <input type="submit" value="Enviar">

@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.clienteservidor.entities.MappedOrder;
 import com.clienteservidor.entities.MappedProduct;
 import com.clienteservidor.entities.MappedUser;
+import com.clienteservidor.entities.Order;
 import com.clienteservidor.entities.Product;
 import com.clienteservidor.entities.User;
 
@@ -52,6 +54,23 @@ public class DBUtils {
 		return template.query(sql, new MappedProduct());
 	}
 	
+	/**
+	 * Método para obtener una lista de ventas ordenadas descendientemente por el ID.
+	 * 
+	 * @return List<Order>
+	 */
+	public List<Order> obtainAllOrders(){
+		
+		String sql = "SELECT * FROM orders ORDER BY orderID DESC";
+		
+		return template.query(sql, new MappedOrder());
+	}
+	
+	/**
+	 * Método para insertar un usuario en la DB.
+	 * 
+	 * @param usuario
+	 */
 	public void insertUser (User usuario) {
 		
 		String sql = "INSERT INTO users(name, surname, login, address, state, city, postalCode, phoneNumber, admin, password) VALUES ('"
@@ -66,6 +85,15 @@ public class DBUtils {
 				+ usuario.getAdmin() + ", '"
 				+ usuario.getPassword() + "');";
 				
+		template.execute(sql);
+	}
+	
+	public void alterAddress (User usuario) {
+		
+		String sql = "UPDATE users SET address='" + usuario.getAddress() + "', state='" + usuario.getState() + "', city='"
+				+ usuario.getCity() + "', postalCode='" + usuario.getPostalCode() +"' WHERE userID='" + usuario.getUserID()
+				+ "';";
+		
 		template.execute(sql);
 	}
 }

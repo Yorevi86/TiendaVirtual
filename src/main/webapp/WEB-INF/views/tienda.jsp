@@ -130,7 +130,7 @@
 
                                 if (admin == 1) {
                                     out.println("<span>Bienvenido, " + request.getSession().getAttribute("name") + "!</span>");
-                                    out.println("<button type=\"submit\" onclick=\"location.href='ventas'\">Ver ventas</button>");
+                                    out.println("<button type=\"submit\" onclick=\"location.href='listadoventas'\">Ver ventas</button>");
                                     out.println("<button type=\"submit\" onclick=\"location.href='logout'\">Cerrar sesion</button></th>");
                                 } else if (admin == 0) {
                                     out.println("<span>Bienvenido, " + request.getSession().getAttribute("name") + "!</span>");
@@ -149,15 +149,17 @@
                             %>
                     </tr>
                 </thead>
-                <tbody>                    
-                    <%
-                    String catalogo = (String) request.getAttribute("catalogo");
-                    out.println(catalogo);
-                    %>
-                    <tr>
-                        <td class="tg-0lax" colspan="4"></td>
-                    </tr>
-                </tbody>
+                <form action="./carrito" method="get">
+                    <tbody>                    
+                        <%
+                        String catalogo = (String) request.getAttribute("catalogo");
+                        out.println(catalogo);
+                        %>
+                        <tr>
+                            <td class="tg-0lax" colspan="4"><input type="submit" value="Realizar compra"></td>
+                        </tr>
+                    </tbody>
+                </form>
             </table>
         </div>
         <script charset="utf-8">
